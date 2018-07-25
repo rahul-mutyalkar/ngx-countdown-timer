@@ -54,23 +54,22 @@ export class CountdownTimer implements OnInit, OnDestroy{
         this.zeroTrigger.emit("reached zero");
         return "00:00:00:00";
       }
-
-      var days = Math.floor(milisec_diff / 1000 / 60 / (60 * 24));
+     var days = Math.floor(milisec_diff / 1000 / 60 / (60 * 24));
       var date_diff = new Date( milisec_diff );
-      var day_string = (days) ? this.twoDigit(days) + ":" : "";
+      var day_string = (days) ? this.twoDigit(days) + " days : " : "";
       var day_hours = days * 24;
 
 
       if (this.timeOnly) {
         let hours = date_diff.getUTCHours() + day_hours;
         return  this.twoDigit(hours) +
-        ":" + this.twoDigit(date_diff.getMinutes()) + ":" 
+        ":" + this.twoDigit(date_diff.getMinutes()) + "hours : " 
         + this.twoDigit(date_diff.getSeconds());
       } else {
         // Date() takes a UTC timestamp – getHours() gets hours in local time not in UTC. therefore we have to use getUTCHours()
         return day_string + this.twoDigit(date_diff.getUTCHours()) +
-           ":" + this.twoDigit(date_diff.getMinutes()) + ":" 
-           + this.twoDigit(date_diff.getSeconds());
+           ":" + this.twoDigit(date_diff.getMinutes()) + "minutes : " 
+           + this.twoDigit(date_diff.getSeconds())+"seconds ";
 
       }
   }
